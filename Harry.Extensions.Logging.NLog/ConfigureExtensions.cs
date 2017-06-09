@@ -1,11 +1,11 @@
 using System;
 using System.IO;
 using System.Reflection;
-using Microsoft.Extensions.Logging;
 using NLog;
 using NLog.Config;
+using Harry.Extensions.Logging.NLog;
 
-namespace Harry.Extensions.Logging.NLog
+namespace Microsoft.Extensions.Logging
 {
     /// <summary>
     /// Helpers for .NET Core
