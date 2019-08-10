@@ -1,4 +1,5 @@
 ﻿using Harry.Data;
+using Harry.Data.DbLink;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -25,7 +26,10 @@ namespace Harry.Extensions.Logging.OrchardCore
         {
             this.options = optionsAccessor.Value;
             this.serviceScope = sp.CreateScope();
-            repositoryFactory = new RepositoryFactory(serviceScope.ServiceProvider);
+            repositoryFactory = new RepositoryFactory(serviceScope.ServiceProvider
+                , serviceScope.ServiceProvider.GetServices<IDbProvider>()
+                , serviceScope.ServiceProvider.GetRequiredService<IDbLinkFactory>()
+                );
         }
 
         public IRepository Repository
@@ -50,7 +54,7 @@ namespace Harry.Extensions.Logging.OrchardCore
                         return repository;
                     }
 
-                    repository = repositoryFactory.CreateRepository<LogModel>(options.DbLinkName);
+                    repository = repositoryFactory.CreateRepository<LogModel>(this.ServiceProvider, options.DbLinkName);
                     return repository;
                 }
             }
