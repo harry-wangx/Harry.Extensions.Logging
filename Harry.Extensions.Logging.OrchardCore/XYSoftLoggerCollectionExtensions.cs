@@ -24,7 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
             services.TryAddEnumerable(ServiceDescriptor.Singleton<ILoggerProvider, XYSoftLoggerProvider>());
-            services.TryAddEnumerable(ServiceDescriptor.Singleton<IDbLinkProvider, XYSoftLoggerDbLinkProvider>());
+            //services.TryAddEnumerable(ServiceDescriptor.Singleton<IDbLinkProvider, XYSoftLoggerDbLinkProvider>());
             //数据数据迁移类
             services.TryAddEnumerable(ServiceDescriptor.Scoped<IDataMigration, Migrations>());
 
@@ -41,10 +41,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 });
             });
 
-            if (optionsBuilder != null)
-            {
-                services.Configure(optionsBuilder);
-            }
+            //if (optionsBuilder != null)
+            //{
+            //    services.Configure(optionsBuilder);
+            //}
 
             var descriptor = services.Where(m => m.ServiceType == typeof(ILoggerFactory)).FirstOrDefault();
 

@@ -1,6 +1,6 @@
 $path = Get-Location
 
-$baseDate=[datetime]"08/08/2016"
+$baseDate=[datetime]"10/22/2016"
 $currentDate=$(Get-Date)
 $interval=New-TimeSpan -Start $baseDate -End $currentDate
 $days=$interval.Days

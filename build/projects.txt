@@ -1,1 +1,2 @@
 Harry.Extensions.Logging.OrchardCore
+Harry.Extensions.Logging.Exceptionless

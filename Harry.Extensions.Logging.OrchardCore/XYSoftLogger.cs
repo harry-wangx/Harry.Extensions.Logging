@@ -4,8 +4,8 @@ using System.Text;
 using Harry.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions.Internal;
 using Microsoft.Extensions.Options;
+using static Harry.Data.Log.EFLogger;
 
 namespace Harry.Extensions.Logging.OrchardCore
 {
@@ -25,6 +25,7 @@ namespace Harry.Extensions.Logging.OrchardCore
 
         public IDisposable BeginScope<TState>(TState state)
         {
+            //todo:此处需要修改
             return NullScope.Instance;
         }
 
@@ -81,7 +82,7 @@ namespace Harry.Extensions.Logging.OrchardCore
             };
 
             //todo:这里应该放到队列里,然后再批量插入数据库
-            loggerProvider.Repository.Insert(model);
+            loggerProvider.Repository.InsertAsync(model).GetAwaiter().GetResult();
         }
     }
 }
